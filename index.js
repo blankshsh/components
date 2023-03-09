@@ -1,4 +1,7 @@
+import VMoney from './src/components/money/money.vue'
+
 const components = [
+  VMoney
 ]
 
 const install = function(Vue, opts = {}) {
