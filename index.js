@@ -4,6 +4,7 @@ import TableFormItem from './src/components/table-validate/table-form-item.vue'
 import InputTarget from './src/components/select-input/input-target.vue'
 import InputDialog from './src/components/select-input/input-dialog.vue'
 import SelectInput from './src/components/select-input/select-input.vue'
+import SelectDiCt from './src/components/select-dict/select-dict.vue'
 
 const components = [
   Money,
@@ -11,6 +12,7 @@ const components = [
   TableFormItem,
   InputTarget,
   InputDialog,
+  SelectDiCt
 ]
 
 const install = function(Vue, opts = {}) {
