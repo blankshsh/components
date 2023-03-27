@@ -1,7 +1,11 @@
-import VMoney from './src/components/money/money.vue'
+import Money from './src/components/money/money.vue'
+import TableVdlidate from './src/components/table-validate/table-validate.vue'
+import TableFormItem from './src/components/table-validate/table-form-item.vue'
 
 const components = [
-  VMoney
+  Money,
+  TableVdlidate,
+  TableFormItem
 ]
 
 const install = function(Vue, opts = {}) {
