@@ -10,6 +10,12 @@
           size="small"
         />
       </el-form-item>
+      <el-form-item label="金额">
+        <v-input-target
+          v-model="model.value"
+          size="small"
+        />
+      </el-form-item>
     </el-form>
     <el-button @click="addLine">
       addLine
@@ -90,7 +96,8 @@ export default {
   data() {
     return {
       model: {
-        money: ''
+        money: '',
+        value: '122323'
       },
       selectedRow: '',
       table: {

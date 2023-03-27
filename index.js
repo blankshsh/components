@@ -1,11 +1,16 @@
 import Money from './src/components/money/money.vue'
 import TableVdlidate from './src/components/table-validate/table-validate.vue'
 import TableFormItem from './src/components/table-validate/table-form-item.vue'
+import InputTarget from './src/components/select-input/input-target.vue'
+import InputDialog from './src/components/select-input/input-dialog.vue'
+import SelectInput from './src/components/select-input/select-input.vue'
 
 const components = [
   Money,
   TableVdlidate,
-  TableFormItem
+  TableFormItem,
+  InputTarget,
+  InputDialog,
 ]
 
 const install = function(Vue, opts = {}) {
