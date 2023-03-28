@@ -1,7 +1,7 @@
 {
-  "name": "blankshsh-components",
+  "name": "v-standard-components",
   "version": "0.1.1",
-  "description": "blankshsh-components",
+  "description": "v-standard-components",
   "author": "blankshsh",
   "license": "MIT",
   "scripts": {
