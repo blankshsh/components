@@ -1,3 +1,4 @@
+import WaterMark from './src/components/water-mark/water-mark.vue'
 import Money from './src/components/money/money.vue'
 import TableVdlidate from './src/components/table-validate/table-validate.vue'
 import TableFormItem from './src/components/table-validate/table-form-item.vue'
@@ -7,11 +8,13 @@ import SelectInput from './src/components/select-input/select-input.vue'
 import SelectDiCt from './src/components/select-dict/select-dict.vue'
 
 const components = [
+  WaterMark,
   Money,
   TableVdlidate,
   TableFormItem,
   InputTarget,
   InputDialog,
+  SelectInput,
   SelectDiCt
 ]
 

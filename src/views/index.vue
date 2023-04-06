@@ -1,5 +1,6 @@
 <template>
   <div style="width: 1000px; margin: 0 auto; padding: 20px;">
+    <v-water-mark text="id xxx" height="100" />
     <el-form
       :model="model"
       label-width="150px"
