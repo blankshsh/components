@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <!-- import Vue before Element -->
+  <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <el-card>
+      <div slot="header" class="flexx">
+        <span>随机生成</span>
+        <el-button size="mini" @click="createVal">run</el-button>
+      </div>
+      <el-input v-model="sortData" type="textarea" :rows="10" />
+    </el-card>
+    <el-card>
+      <div slot="header" class="flexx">
+        <span>开奖号码</span>
+      </div>
+      <div class="flexx" style="justify-content: flex-start">
+        <p style="width: 80px">红球</p>
+        <el-input v-for="(_, i) in Array.from({length: 6})" v-model.trim="blue[i]" style="width: 60px;margin: 0 8px"
+          size="mini"></el-input>
+        <p style="width: 80px; margin-left: 20px">蓝球</p>
+        <el-input v-model.trim="red" style="width: 60px;" size="mini"></el-input>
+      </div>
+    </el-card>
+    <el-card>
+      <div slot="header" class="flexx">
+        <span>购买号码</span>
+        <div>
+          <el-button size="mini" @click="clear">clear</el-button>
+        </div>
+      </div>
+      <ul>
+        <li v-for="item in code" class="border">
+          <div class="flexx" style="justify-content: flex-start">
+            <p style="width: 80px">
+              <span>红球</span>
+              <span>
+                {{ blue.filter(ball => ball && item.blue.includes(ball)).length }} 个
+              </span>
+            </p>
+            <el-input v-for="(_, i) in Array.from({length: 6})" v-model.trim="item.blue[i]"
+              style="width: 60px;margin: 0 8px" size="mini"
+              :class="{ 'selected' : item.blue[i] && blue.includes(item.blue[i]) }"></el-input>
+            <p style="width: 80px; margin-left: 20px">
+              <span>蓝球</span>
+              <span>
+                {{red && item.red === red ? 1 : 0}} 个
+              </span>
+            </p>
+            <el-input v-model.trim="item.red" style="width: 60px;" size="mini"
+              :class="{ 'selected' : red && red === item.red }"></el-input>
+          </div>
+        </li>
+      </ul>
+    </el-card>
+  </div>
+  <script>
+    window.$app = new Vue({
+      el: '#app',
+      data: function () {
+        return {
+          balls: Array.from({ length: 33 }).map((_, i) => `${i > 8 ? '' : 0}${i + 1}`),
+          blue: Array.from({ length: 6 }).map(() => ''),
+          red: '',
+          sortData: '',
+          list: [],
+          code: Array.from({ length: 5 }).map(() => {
+            return { blue: Array.from({ length: 6 }).map(() => ''), red: '' }
+          }),
+        }
+      },
+      methods: {
+        createVal() {
+          Array.from({ length: 5 }).map(() => {
+            const blue = Array.from({ length: 33 }).map((_, i) => i + 1)
+            this.sort(blue, true)
+            const red = Array.from({ length: 16 }).map((_, i) => i + 1)
+            this.sort(red, true)
+            const result = blue.splice(-6).map(item => this.completion(item))
+            this.sort(result)
+            const last = red.splice(-1)
+            this.sortData += `${result.join(' ')} + ${this.completion(last)}\n`
+          })
+        },
+        sort(list, random) {
+          if (random) {
+            list.sort((a, b) => {
+              return Math.random() - 0.5 > 0 ? 1 : -1
+            })
+          } else {
+            list.sort((a, b) => a - b)
+          }
+        },
+        completion(code) {
+          return `${code > 9 ? '' : '0'}${code}`;
+        },
+        add() {
+          this.code.push({ blue: [], red: '', })
+        },
+        clear() {
+          this.blue = []
+          this.red = ''
+          this.code = Array.from({ length: 5 }).map(() => {
+            return { blue: [], red: '', }
+          })
+        }
+      }
+    })
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .flexx {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .el-checkbox-button__inner {
+      padding: 4px 8px;
+    }
+
+    li {
+      list-style-type: none;
+      padding: 10px 0;
+    }
+
+    .selected input {
+      background-color: #409EFF;
+      color: #fff;
+    }
+
+    .el-card {
+      margin-bottom: 20px;
+    }
+  </style>
+</body>
+
+</html>
